@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <title>Movies</title>
+</head>
+<body>
+    <h3>Movies</h3>
+
+    <input id="movieInput" type="text" value="">
+    <button id="submitButton" type="submit">Submit</button>
+
+    <div id="displayBox">
+
+    </div>
+
+    <script>
+        const myDiv = document.getElementById("displayBox");
+        const submitButton = document.getElementById("submitButton");
+
+        submitButton.addEventListener("click", () => {
+            const movieId = document.getElementById("movieInput").value;
+
+            fetch(`/MovieDetails/${movieId}`,
+                {
+                    method: "GET",
+                })
+                .then(result => result.text())
+                .then(html => myDiv.innerHTML = html);
+        });
+    </script>
+</body>
+</html>
